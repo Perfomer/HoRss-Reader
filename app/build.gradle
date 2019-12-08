@@ -3,7 +3,7 @@ apply from: '../android_commons.gradle'
 
 android {
     defaultConfig {
-        applicationId "perfomeria.rssreader"
+        applicationId "perfomeria.horss"
     }
 }
 

@@ -11,7 +11,7 @@ public class PreferencesManager {
 
     private static SharedPreferences preferences;
 
-    public static void initialize(final Context context) {
+    public static void initialize(final @NonNull Context context) {
         if (preferences != null) return;
 
         preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);

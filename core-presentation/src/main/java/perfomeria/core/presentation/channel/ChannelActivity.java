@@ -74,7 +74,7 @@ public class ChannelActivity extends AppCompatActivity {
 
         disposable.add(viewModel.getArticles()
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(articles -> toolbar.setTitle("Количество новстей: " + articles.size()))
+                .doOnNext(articles -> toolbar.setTitle(getString(R.string.channel_articles_count, articles.size())))
                 .subscribe(adapter::setArticles, Throwable::printStackTrace));
 
         disposable.add(viewModel.isLoading()

@@ -1,4 +1,4 @@
-package perfomeria.rssreader;
+package perfomeria.horss;
 
 import android.app.Application;
 

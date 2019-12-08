@@ -14,7 +14,7 @@ public class NetworkDataSource {
     private final RssApi api;
 
 
-    NetworkDataSource(final RssApi api) {
+    NetworkDataSource(final @NonNull RssApi api) {
         this.api = api;
     }
 
@@ -28,7 +28,7 @@ public class NetworkDataSource {
     }
 
     @NonNull
-    public Single<Rss> loadRss(final String url) {
+    public Single<Rss> loadRss(final @NonNull String url) {
         return api.getRssData(url);
     }
 

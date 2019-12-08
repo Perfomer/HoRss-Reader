@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -44,12 +45,14 @@ public class PreferencesDataSource {
     }
 
 
+    @WorkerThread
     @NonNull
     @SuppressWarnings("ConstantConditions")
     private String getCurrentChannelLinkSync() {
         return preferences.getString(KEY_RSSLINK, DEF_RSSLINK);
     }
 
+    @WorkerThread
     private void setCurrentChannelLinkSync(final @NonNull String link) {
         if (link.equals(getCurrentChannelLinkSync())) {
             throw new IllegalArgumentException("There's already that link: " + link);

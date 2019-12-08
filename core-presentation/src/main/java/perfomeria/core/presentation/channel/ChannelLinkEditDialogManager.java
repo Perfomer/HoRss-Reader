@@ -31,8 +31,8 @@ class ChannelLinkEditDialogManager {
 
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity)
-                .setTitle("Сменить RSS-канал")
-                .setMessage("Вы можете читать новости с другого RSS-канала.\n\nНо имейте в виду, что при изменении ссылки на канал — кешированные новости будут безвозвратно удалены с устройства!")
+                .setTitle(R.string.channellink_dialog_title)
+                .setMessage(R.string.channellink_dialog_message)
                 .setView(rootView)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {

@@ -9,10 +9,10 @@ public class DatabaseManager {
 
     private static AppDatabase database;
 
-    public static void initialize(final Context context) {
+    public static void initialize(final @NonNull Context context) {
         if (database != null) return;
 
-        database = Room.databaseBuilder(context, AppDatabase.class, "rssreaderdb")
+        database = Room.databaseBuilder(context, AppDatabase.class, "horss-db")
                 .fallbackToDestructiveMigration() // Attention
                 .build();
     }
