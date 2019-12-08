@@ -8,7 +8,7 @@ public class IconUtil {
     public static String getIconUri(final @NonNull String url) {
         final StringBuilder iconUrl = new StringBuilder(url);
 
-        for (int i = 7; i < iconUrl.length(); i++) {
+        for (int i = 8; i < iconUrl.length(); i++) {
             if (url.charAt(i) != '/') continue;
 
             iconUrl.delete(i, iconUrl.length());
