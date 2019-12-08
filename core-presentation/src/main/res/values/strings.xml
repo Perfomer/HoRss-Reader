@@ -1,6 +1,6 @@
 <resources>
-    <string name="channellink_dialog_title">Сменить RSS-канал</string>
-    <string name="channellink_dialog_message">"Вы можете читать новости с другого RSS-канала.\n\nНо имейте в виду, что при изменении ссылки на канал — кешированные новости будут безвозвратно удалены с устройства!"</string>
-    <string name="channellink_dialog_hint">Введите адрес RSS-ленты</string>
-    <string name="channel_articles_count">Количество новостей: %d</string>
+    <string name="channellink_dialog_title">Change RSS-feed</string>
+    <string name="channellink_dialog_message">You can read news from another RSS feed.\n\nBut keep in mind that if you change the link to the channel — cached news will be permanently deleted from the device!</string>
+    <string name="channellink_dialog_hint">Type RSS-feed link</string>
+    <string name="channel_articles_count">Articles count: %d</string>
 </resources>
