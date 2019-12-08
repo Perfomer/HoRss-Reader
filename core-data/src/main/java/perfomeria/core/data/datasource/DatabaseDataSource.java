@@ -51,7 +51,7 @@ public class DatabaseDataSource {
 
     @NonNull
     public Observable<Channel> getChannel(final @NonNull String channelUrl) {
-        return channelDao.get(channelUrl);
+        return channelDao.getByUrl(channelUrl);
     }
 
     @NonNull

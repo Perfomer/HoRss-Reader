@@ -26,10 +26,10 @@ public class ArticleMapper implements Mapper<Article, ArticleModel> {
     public ArticleModel map(final Article article) {
         ArticleModel model = new ArticleModel();
 
+        model.setId(article.getId());
         model.setDate(article.getDate());
         model.setDateLong(article.getDateLong());
         model.setDescription(article.getDescription());
-        model.setId(article.getId());
         model.setChannelId(article.getChannelId());
         model.setTitle(article.getTitle());
         model.setUrl(article.getUrl());

@@ -34,9 +34,9 @@ public class ArticleChannelMapper implements Mapper<ArticleChannel, ArticleChann
         model.setChannelId(articleChannel.getChannelId());
         model.setLink(articleChannel.getLink());
         model.setTitle(articleChannel.getTitle());
-        model.setTitleChannel(articleChannel.getTitleChannel());
-        model.setUrl(articleChannel.getUrl());
-        model.setUrlIcoChannel(articleChannel.getUrlIcoChannel());
+        model.setTitleChannel(articleChannel.getChannelTitle());
+        model.setUrl(articleChannel.getChannelUrl());
+        model.setUrlIcoChannel(articleChannel.getChannelIconUrl());
         model.setUrlImage(articleChannel.getUrlImage());
 
         return model;

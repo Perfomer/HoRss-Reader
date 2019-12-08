@@ -15,7 +15,7 @@ public class ChannelMapper implements Mapper<Channel, ChannelModel> {
 
     private final ListMapper<Article, ArticleModel> articleMapper;
 
-    ChannelMapper(final ListMapper<Article, ArticleModel> articleMapper) {
+    public ChannelMapper(final ListMapper<Article, ArticleModel> articleMapper) {
         this.articleMapper = articleMapper;
     }
 

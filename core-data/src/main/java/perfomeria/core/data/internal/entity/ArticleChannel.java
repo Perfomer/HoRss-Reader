@@ -20,11 +20,11 @@ public class ArticleChannel {
 
     private String urlImage = "http://";
 
-    private String url = "http://";
+    private String channelUrl = "http://";
 
-    private String urlIcoChannel = "http://";
+    private String channelIconUrl = "http://";
 
-    private String titleChannel;
+    private String channelTitle;
 
 
     @Override
@@ -40,14 +40,14 @@ public class ArticleChannel {
             Objects.equals(description, that.description) &&
             Objects.equals(date, that.date) &&
             Objects.equals(urlImage, that.urlImage) &&
-            Objects.equals(url, that.url) &&
-            Objects.equals(urlIcoChannel, that.urlIcoChannel) &&
-            Objects.equals(titleChannel, that.titleChannel);
+            Objects.equals(channelUrl, that.channelUrl) &&
+            Objects.equals(channelIconUrl, that.channelIconUrl) &&
+            Objects.equals(channelTitle, that.channelTitle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, channelId, title, link, description, date, dateLong, urlImage, url, urlIcoChannel, titleChannel);
+        return Objects.hash(id, channelId, title, link, description, date, dateLong, urlImage, channelUrl, channelIconUrl, channelTitle);
     }
 
 
@@ -115,28 +115,28 @@ public class ArticleChannel {
         this.urlImage = urlImage;
     }
 
-    public String getUrl() {
-        return url;
+    public String getChannelUrl() {
+        return channelUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setChannelUrl(String channelUrl) {
+        this.channelUrl = channelUrl;
     }
 
-    public String getUrlIcoChannel() {
-        return urlIcoChannel;
+    public String getChannelIconUrl() {
+        return channelIconUrl;
     }
 
-    public void setUrlIcoChannel(String urlIcoChannel) {
-        this.urlIcoChannel = urlIcoChannel;
+    public void setChannelIconUrl(String channelIconUrl) {
+        this.channelIconUrl = channelIconUrl;
     }
 
-    public String getTitleChannel() {
-        return titleChannel;
+    public String getChannelTitle() {
+        return channelTitle;
     }
 
-    public void setTitleChannel(String titleChannel) {
-        this.titleChannel = titleChannel;
+    public void setChannelTitle(String channelTitle) {
+        this.channelTitle = channelTitle;
     }
 
 }
