@@ -91,18 +91,19 @@ public class ArticleRepository implements Repository {
 
     @Override
     @NonNull
-    public Single<String> getCurrentChannelLink() {
-        return preferencesDataSource.getCurrentChannelLink();
-    }
-
-    @Override
-    @NonNull
     public Completable updateChannelLink(final @NonNull String link) {
         return preferencesDataSource.setCurrentChannelLink(link)
                 .andThen(databaseDataSource.clearArticles());
     }
 
 
+    /**
+     * Extracts [Channel] from [Rss]
+     *
+     * @param rss         [Rss] source
+     * @param channelLink source link
+     * @return [Channel] channel
+     */
     @NonNull
     private static Channel extractChannel(
             final @NonNull Rss rss,

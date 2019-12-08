@@ -34,17 +34,33 @@ public class PreferencesDataSource {
         return INSTANCE;
     }
 
+
+    /**
+     * Provides current channel source link.
+     *
+     * @return [String] source link
+     */
     @NonNull
     public Single<String> getCurrentChannelLink() {
         return Single.fromCallable(this::getCurrentChannelLinkSync);
     }
 
+    /**
+     * Sets the current channel source link.
+     *
+     * @param link current channel source link
+     * @return [Completable] with success/error
+     */
     @NonNull
     public Completable setCurrentChannelLink(@NonNull final String link) {
         return Completable.fromAction(() -> setCurrentChannelLinkSync(link));
     }
 
-
+    /**
+     * Provides the current channel source link.
+     *
+     * @return String source link
+     */
     @WorkerThread
     @NonNull
     @SuppressWarnings("ConstantConditions")
@@ -52,6 +68,12 @@ public class PreferencesDataSource {
         return preferences.getString(KEY_RSSLINK, DEF_RSSLINK);
     }
 
+    /**
+     * Inserts the current channel source link into the preferences.
+     *
+     * @param link source link
+     * @throws IllegalArgumentException If there's already the same link like [link] then it throw [IllegalArgumentException]
+     */
     @WorkerThread
     private void setCurrentChannelLinkSync(final @NonNull String link) {
         if (link.equals(getCurrentChannelLinkSync())) {

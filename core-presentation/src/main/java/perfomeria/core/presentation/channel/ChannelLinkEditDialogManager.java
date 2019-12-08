@@ -21,6 +21,14 @@ class ChannelLinkEditDialogManager {
         this.activity = activity;
     }
 
+    /**
+     * Shows the dialog
+     * Allows to edit [Channel] (RSS-feed) source link.
+     * Shows the soft-keyboard after opening.
+     *
+     * @param currentLink the link of the current channel (to fill the field by default)
+     * @param listener result-callback (provides [String] link)
+     */
     void showDialog(
             final @Nullable String currentLink,
             final @NonNull OnLinkSelectedListener listener

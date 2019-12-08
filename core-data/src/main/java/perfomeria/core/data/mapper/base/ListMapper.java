@@ -24,6 +24,14 @@ public abstract class ListMapper<FROM, TO> implements Mapper<List<FROM>, List<TO
 
     protected abstract TO mapItem(FROM from);
 
+    /**
+     * Wraps received [mapper] into the [ListMapper]
+     *
+     * @param mapper source mapper
+     * @param <T>    mapper "from"-type
+     * @param <R>    mapper "to"-type
+     * @return ListMapper
+     */
     @NonNull
     public static <T, R> ListMapper<T, R> from(final Mapper<T, R> mapper) {
         return new ListMapper<T, R>() {

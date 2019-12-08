@@ -8,6 +8,12 @@ import androidx.annotation.NonNull;
 
 public class StringUtil {
 
+    /**
+     * Provides HTML-formatted [Spanned] from [String]
+     *
+     * @param string source (html)
+     * @return Spanned (already formatted)
+     */
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(final @NonNull String string) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

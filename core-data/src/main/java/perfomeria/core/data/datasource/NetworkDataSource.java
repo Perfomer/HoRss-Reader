@@ -27,6 +27,12 @@ public class NetworkDataSource {
         return INSTANCE;
     }
 
+    /**
+     * Loads RSS-feed from the [url]. Requires the Internet connection.
+     *
+     * @param url source link of the channel (RSS-feed)
+     * @return [Rss]
+     */
     @NonNull
     public Single<Rss> loadRss(final @NonNull String url) {
         return api.getRssData(url);
