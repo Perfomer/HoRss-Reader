@@ -1,0 +1,17 @@
+android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    // Test
+    testImplementation "junit:junit:4.12"
+
+    // Android test
+    androidTestImplementation "androidx.test:runner:1.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+
+    // Database
+    androidTestImplementation "androidx.room:room-testing:2.2.2"
+}

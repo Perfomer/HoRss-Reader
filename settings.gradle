@@ -1,0 +1,1 @@
+include ':app', ':core-common', ':core-data', ':core-domain', ':core-presentation'

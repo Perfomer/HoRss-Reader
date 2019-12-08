@@ -1,0 +1,18 @@
+apply plugin: 'com.android.application'
+apply from: '../android_commons.gradle'
+
+android {
+    defaultConfig {
+        applicationId "perfomeria.rssreader"
+    }
+}
+
+dependencies {
+    // Module
+    api project(":core-common")
+    api project(":core-data")
+    api project(":core-domain")
+    api project(":core-presentation")
+
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+}

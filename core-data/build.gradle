@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+
+dependencies {
+    // Module
+    api project(":core-common")
+    api project(":core-domain")
+
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:2.6.2"
+    api "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
+    api "com.squareup.retrofit2:converter-simplexml:2.3.0"
+
+    // Database
+    implementation "android.arch.persistence.room:runtime:2.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation "android.arch.persistence.room:rxjava2:2.0.0"
+}

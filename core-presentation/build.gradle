@@ -1,0 +1,8 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+
+dependencies {
+    api project(":core-common")
+    api project(":core-domain")
+    api project(":core-data")
+}
