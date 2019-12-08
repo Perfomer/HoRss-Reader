@@ -25,10 +25,11 @@ public class ChannelViewModel extends ViewModel {
 
     private final CompositeDisposable disposable = new CompositeDisposable();
 
+    private final Subject<ChannelModel> channelSubject = BehaviorSubject.create();
     private final Subject<List<ArticleChannelModel>> articlesSubject = BehaviorSubject.create();
     private final Subject<Boolean> isLoading = BehaviorSubject.create();
 
-    private ChannelModel currentChannel;
+    private volatile ChannelModel currentChannel;
 
     public ChannelViewModel() {
         initializeChannel();
@@ -52,6 +53,11 @@ public class ChannelViewModel extends ViewModel {
         return isLoading;
     }
 
+    @NonNull
+    Observable<ChannelModel> getChannel() {
+        return channelSubject;
+    }
+
     @Nullable
     ChannelModel getCurrentChannel() {
         return currentChannel;
@@ -71,7 +77,10 @@ public class ChannelViewModel extends ViewModel {
     private void initializeChannel() {
         disposable.add(repository.getChannel()
                 .subscribeOn(Schedulers.io())
-                .subscribe((channel) -> currentChannel = channel));
+                .subscribe((channel) -> {
+                    currentChannel = channel;
+                    channelSubject.onNext(currentChannel);
+                }));
     }
 
     private void subscribeOnArticles() {

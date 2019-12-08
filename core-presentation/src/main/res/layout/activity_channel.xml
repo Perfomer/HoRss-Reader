@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="perfomeria.core.presentation.channel.ChannelActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,11 +16,39 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/channel_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Все новости" />
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/channel_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="20sp"
+                    tools:text="ChannelName" />
+
+                <TextView
+                    android:id="@+id/channel_toolbar_articlecount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/channel_articles_count" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -27,7 +56,8 @@
         android:id="@+id/channel_swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout_marginTop="70dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/channel_articleslist"

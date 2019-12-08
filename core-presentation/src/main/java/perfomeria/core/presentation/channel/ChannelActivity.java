@@ -3,6 +3,8 @@ package perfomeria.core.presentation.channel;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,8 +33,9 @@ public class ChannelActivity extends AppCompatActivity {
 
     private ChannelViewModel viewModel;
 
-    private Toolbar toolbar;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView channelTitle;
+    private TextView articlesCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,17 @@ public class ChannelActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(ChannelViewModel.class);
 
         final RecyclerView recyclerView = findViewById(R.id.channel_articleslist);
-        toolbar = findViewById(R.id.channel_toolbar);
+        final AppBarLayout appbar = findViewById(R.id.channel_appbarlayout);
+        final Toolbar toolbar = findViewById(R.id.channel_toolbar);
+        final View.OnClickListener scrollToTop = (v) -> recyclerView.smoothScrollToPosition(0);
+
+        channelTitle = findViewById(R.id.channel_toolbar_title);
+        articlesCount = findViewById(R.id.channel_toolbar_articlecount);
         swipeRefreshLayout = findViewById(R.id.channel_swiperefresh);
+
+        appbar.setOnClickListener(scrollToTop);
+        toolbar.setOnClickListener(scrollToTop);
+        toolbar.setTitle("");
 
         setSupportActionBar(toolbar);
 
@@ -74,12 +88,17 @@ public class ChannelActivity extends AppCompatActivity {
 
         disposable.add(viewModel.getArticles()
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(articles -> toolbar.setTitle(getString(R.string.channel_articles_count, articles.size())))
+                .doOnNext(articles -> articlesCount.setText(getString(R.string.channel_articles_count, articles.size())))
                 .subscribe(adapter::setArticles, Throwable::printStackTrace));
 
         disposable.add(viewModel.isLoading()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(swipeRefreshLayout::setRefreshing, Throwable::printStackTrace));
+
+        disposable.add(viewModel.getChannel()
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(ChannelModel::getTitleChannel)
+                .subscribe(channelTitle::setText, Throwable::printStackTrace));
     }
 
     @Override
