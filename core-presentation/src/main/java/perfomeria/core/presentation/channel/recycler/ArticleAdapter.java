@@ -45,8 +45,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (articles == null) return 0;
-        return articles.size();
+        return articles == null ? 0 : articles.size();
     }
 
     public void setArticles(final @NonNull List<ArticleChannelModel> articles) {

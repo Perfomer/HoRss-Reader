@@ -29,7 +29,6 @@ public class ChannelActivity extends AppCompatActivity {
     private final CompositeDisposable disposable = new CompositeDisposable();
 
     private final ArticleAdapter adapter = new ArticleAdapter(this::onBrowserClick);
-    private final ChannelLinkEditDialogManager dialogManager = new ChannelLinkEditDialogManager(this);
 
     private ChannelViewModel viewModel;
 
@@ -111,7 +110,7 @@ public class ChannelActivity extends AppCompatActivity {
         final ChannelModel channel = viewModel.getCurrentChannel();
         final String currentLink = channel == null ? null : channel.getUrl();
 
-        dialogManager.showDialog(currentLink, viewModel::updateChannelLink);
+        ChannelLinkEditDialogManager.showDialog(this, currentLink, viewModel::updateChannelLink);
     }
 
     private void onBrowserClick(@NonNull ArticleChannelModel article) {

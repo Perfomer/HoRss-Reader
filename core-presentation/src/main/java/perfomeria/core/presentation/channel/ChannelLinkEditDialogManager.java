@@ -15,12 +15,6 @@ import perfomeria.core.presentation.R;
 @SuppressLint("InflateParams")
 class ChannelLinkEditDialogManager {
 
-    private final Activity activity;
-
-    ChannelLinkEditDialogManager(final @NonNull Activity activity) {
-        this.activity = activity;
-    }
-
     /**
      * Shows the dialog
      * Allows to edit [Channel] (RSS-feed) source link.
@@ -29,7 +23,8 @@ class ChannelLinkEditDialogManager {
      * @param currentLink the link of the current channel (to fill the field by default)
      * @param listener result-callback (provides [String] link)
      */
-    void showDialog(
+    static void showDialog(
+            final @NonNull Activity activity,
             final @Nullable String currentLink,
             final @NonNull OnLinkSelectedListener listener
     ) {
