@@ -2,13 +2,17 @@ package perfomeria.horss;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+
 import com.facebook.stetho.Stetho;
 
 import perfomeria.core.BuildConfig;
-import perfomeria.core.data.internal.database.DatabaseManager;
-import perfomeria.core.data.internal.preferences.PreferencesManager;
+import perfomeria.core.common.di.CoreModule;
+import perfomeria.core.common.di.CoreModuleProvider;
 
-public class App extends Application {
+public class App extends Application implements CoreModuleProvider {
+
+    private CoreModule coreModule;
 
     @Override
     public void onCreate() {
@@ -18,8 +22,13 @@ public class App extends Application {
             Stetho.initializeWithDefaults(this);
         }
 
-        DatabaseManager.initialize(this);
-        PreferencesManager.initialize(this);
+        coreModule = new CoreModule(this);
+    }
+
+    @NonNull
+    @Override
+    public CoreModule getCoreModule() {
+        return coreModule;
     }
 
 }

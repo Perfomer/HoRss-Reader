@@ -2,30 +2,22 @@ package perfomeria.core.data.datasource;
 
 import androidx.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 import perfomeria.core.data.internal.entity.Rss;
-import perfomeria.core.data.internal.network.NetworkManager;
 import perfomeria.core.data.internal.network.RssApi;
 
 public class NetworkDataSource {
 
-    private static NetworkDataSource INSTANCE;
-
     private final RssApi api;
 
 
-    NetworkDataSource(final @NonNull RssApi api) {
+    @Inject
+    public NetworkDataSource(final @NonNull RssApi api) {
         this.api = api;
     }
 
-    @NonNull
-    public static NetworkDataSource getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new NetworkDataSource(NetworkManager.getInstance());
-        }
-
-        return INSTANCE;
-    }
 
     /**
      * Loads RSS-feed from the [url]. Requires the Internet connection.

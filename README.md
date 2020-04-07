@@ -9,10 +9,8 @@
 * MVVM
 * Multi-module
 * RxJava 2
+* Dagger 2
 * Room
-
-### TODO:
-* Add Dagger 2 :)
 
 ### Screenshots:
 <img src="art/main.jpg" width="250"> <img src="art/dialog.jpg" width="250">

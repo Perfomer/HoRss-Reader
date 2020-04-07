@@ -3,7 +3,6 @@ package perfomeria.core.data;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import perfomeria.core.data.internal.entity.ArticleChannel;
 import perfomeria.core.data.mapper.ArticleChannelMapper;
@@ -26,7 +25,7 @@ public class ArticleChannelMapperTest {
     private final static String MOCKDATA_IMAGEURL = "articleImageUrl";
     private final static String MOCKDATA_DATE = "articleDate";
 
-    private final ArticleChannelMapper articleMapper = ArticleChannelMapper.getInstance();
+    private final ArticleChannelMapper articleMapper = new ArticleChannelMapper();
 
     @Test
     public void map() {

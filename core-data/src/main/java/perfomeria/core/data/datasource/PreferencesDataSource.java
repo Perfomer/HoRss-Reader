@@ -6,9 +6,10 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import javax.inject.Inject;
+
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import perfomeria.core.data.internal.preferences.PreferencesManager;
 
 @SuppressLint("ApplySharedPref")
 public class PreferencesDataSource {
@@ -16,22 +17,12 @@ public class PreferencesDataSource {
     private static final String KEY_RSSLINK = "RssLink";
     private static final String DEF_RSSLINK = "https://lenta.ru/rss";
 
-    private static PreferencesDataSource INSTANCE;
-
     private final SharedPreferences preferences;
 
 
-    PreferencesDataSource(final SharedPreferences preferences) {
+    @Inject
+    public PreferencesDataSource(final @NonNull SharedPreferences preferences) {
         this.preferences = preferences;
-    }
-
-    @NonNull
-    public static PreferencesDataSource getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new PreferencesDataSource(PreferencesManager.getPreferences());
-        }
-
-        return INSTANCE;
     }
 
 
@@ -63,7 +54,6 @@ public class PreferencesDataSource {
      */
     @WorkerThread
     @NonNull
-    @SuppressWarnings("ConstantConditions")
     private String getCurrentChannelLinkSync() {
         return preferences.getString(KEY_RSSLINK, DEF_RSSLINK);
     }

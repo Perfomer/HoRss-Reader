@@ -33,7 +33,7 @@ public abstract class ListMapper<FROM, TO> implements Mapper<List<FROM>, List<TO
      * @return ListMapper
      */
     @NonNull
-    public static <T, R> ListMapper<T, R> from(final Mapper<T, R> mapper) {
+    public static <T, R> ListMapper<T, R> from(final @NonNull Mapper<T, R> mapper) {
         return new ListMapper<T, R>() {
             @Override
             protected R mapItem(T t) {

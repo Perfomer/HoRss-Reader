@@ -3,16 +3,10 @@ package perfomeria.core.data;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.Collections;
-import java.util.List;
 
 import perfomeria.core.data.internal.entity.Article;
-import perfomeria.core.data.internal.entity.Channel;
 import perfomeria.core.data.mapper.ArticleMapper;
 import perfomeria.core.domain.model.ArticleModel;
-import perfomeria.core.domain.model.ChannelModel;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,7 +22,7 @@ public class ArticleMapperTest {
     private final static String MOCKDATA_IMAGEURL = "articleImageUrl";
     private final static String MOCKDATA_DATE = "articleDate";
 
-    private final ArticleMapper articleMapper = ArticleMapper.getInstance();
+    private final ArticleMapper articleMapper = new ArticleMapper();
 
     @Test
     public void map() {

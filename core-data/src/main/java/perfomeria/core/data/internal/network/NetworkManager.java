@@ -11,26 +11,20 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class NetworkManager {
 
-    private static RssApi rssApi;
-
     @NonNull
-    public static RssApi getInstance() {
-        if (rssApi != null) return rssApi;
-
+    public static RssApi createApi() {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .build();
 
-        rssApi = new Retrofit.Builder()
+        return new Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(SimpleXmlConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl("http://www")
             .build()
             .create(RssApi.class);
-
-        return rssApi;
     }
 
 }

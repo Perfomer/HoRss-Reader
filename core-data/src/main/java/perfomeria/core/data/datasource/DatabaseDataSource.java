@@ -4,10 +4,11 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import perfomeria.core.data.internal.database.AppDatabase;
-import perfomeria.core.data.internal.database.DatabaseManager;
 import perfomeria.core.data.internal.database.dao.ArticleDao;
 import perfomeria.core.data.internal.database.dao.ChannelDao;
 import perfomeria.core.data.internal.entity.Article;
@@ -18,24 +19,14 @@ import static perfomeria.core.common.DateConverterUtil.dateToLong;
 
 public class DatabaseDataSource {
 
-    private static DatabaseDataSource INSTANCE;
-
     private final ArticleDao articleDao;
     private final ChannelDao channelDao;
 
 
-    DatabaseDataSource(final AppDatabase database) {
+    @Inject
+    DatabaseDataSource(final @NonNull AppDatabase database) {
         articleDao = database.getArticleDao();
         channelDao = database.getChannelDao();
-    }
-
-    @NonNull
-    public static DatabaseDataSource getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new DatabaseDataSource(DatabaseManager.getDatabase());
-        }
-
-        return INSTANCE;
     }
 
 

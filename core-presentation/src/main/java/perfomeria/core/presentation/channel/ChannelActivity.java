@@ -9,28 +9,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import perfomeria.core.common.IntentUtil;
+import perfomeria.core.common.di.CoreModuleProvider;
 import perfomeria.core.domain.model.ArticleChannelModel;
 import perfomeria.core.domain.model.ChannelModel;
 import perfomeria.core.presentation.R;
+import perfomeria.core.presentation.channel.di.DaggerPresentationComponent;
 import perfomeria.core.presentation.channel.recycler.ArticleAdapter;
 
 public class ChannelActivity extends AppCompatActivity {
 
+    @Inject
+    ChannelViewModel viewModel;
+
     private final CompositeDisposable disposable = new CompositeDisposable();
-
     private final ArticleAdapter adapter = new ArticleAdapter(this::onBrowserClick);
-
-    private ChannelViewModel viewModel;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView channelTitle;
@@ -41,7 +44,13 @@ public class ChannelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
 
-        viewModel = ViewModelProviders.of(this).get(ChannelViewModel.class);
+        CoreModuleProvider coreModuleProvider = (CoreModuleProvider) getApplicationContext();
+
+        DaggerPresentationComponent
+            .builder()
+            .coreModule(coreModuleProvider.getCoreModule())
+            .build()
+            .inject(this);
 
         final RecyclerView recyclerView = findViewById(R.id.channel_articleslist);
         final AppBarLayout appbar = findViewById(R.id.channel_appbarlayout);
@@ -86,18 +95,18 @@ public class ChannelActivity extends AppCompatActivity {
         super.onStart();
 
         disposable.add(viewModel.getArticles()
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(articles -> articlesCount.setText(getString(R.string.channel_articles_count, articles.size())))
-                .subscribe(adapter::setArticles, Throwable::printStackTrace));
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext(articles -> articlesCount.setText(getString(R.string.channel_articles_count, articles.size())))
+            .subscribe(adapter::setArticles, Throwable::printStackTrace));
 
         disposable.add(viewModel.isLoading()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(swipeRefreshLayout::setRefreshing, Throwable::printStackTrace));
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(swipeRefreshLayout::setRefreshing, Throwable::printStackTrace));
 
         disposable.add(viewModel.getChannel()
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(ChannelModel::getTitleChannel)
-                .subscribe(channelTitle::setText, Throwable::printStackTrace));
+            .observeOn(AndroidSchedulers.mainThread())
+            .map(ChannelModel::getTitleChannel)
+            .subscribe(channelTitle::setText, Throwable::printStackTrace));
     }
 
     @Override

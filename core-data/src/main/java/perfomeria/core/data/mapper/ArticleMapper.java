@@ -2,23 +2,16 @@ package perfomeria.core.data.mapper;
 
 import androidx.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import perfomeria.core.data.internal.entity.Article;
 import perfomeria.core.data.mapper.base.Mapper;
 import perfomeria.core.domain.model.ArticleModel;
 
 public class ArticleMapper implements Mapper<Article, ArticleModel> {
 
-    private static ArticleMapper INSTANCE;
-
-    private ArticleMapper() {}
-
-    @NonNull
-    public static ArticleMapper getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ArticleMapper();
-        }
-
-        return INSTANCE;
+    @Inject
+    public ArticleMapper() {
     }
 
     @Override

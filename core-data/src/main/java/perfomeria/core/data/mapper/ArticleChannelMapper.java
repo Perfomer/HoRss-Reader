@@ -2,24 +2,16 @@ package perfomeria.core.data.mapper;
 
 import androidx.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import perfomeria.core.data.internal.entity.ArticleChannel;
 import perfomeria.core.data.mapper.base.Mapper;
 import perfomeria.core.domain.model.ArticleChannelModel;
 
 public class ArticleChannelMapper implements Mapper<ArticleChannel, ArticleChannelModel> {
 
-    private static ArticleChannelMapper INSTANCE;
-
-    private ArticleChannelMapper() {
-    }
-
-    @NonNull
-    public static ArticleChannelMapper getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ArticleChannelMapper();
-        }
-
-        return INSTANCE;
+    @Inject
+    public ArticleChannelMapper() {
     }
 
     @Override

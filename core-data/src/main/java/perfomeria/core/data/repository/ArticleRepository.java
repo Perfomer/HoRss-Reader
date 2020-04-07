@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -15,8 +17,6 @@ import perfomeria.core.data.datasource.PreferencesDataSource;
 import perfomeria.core.data.internal.entity.ArticleChannel;
 import perfomeria.core.data.internal.entity.Channel;
 import perfomeria.core.data.internal.entity.Rss;
-import perfomeria.core.data.mapper.ArticleChannelMapper;
-import perfomeria.core.data.mapper.ChannelMapper;
 import perfomeria.core.data.mapper.base.ListMapper;
 import perfomeria.core.data.mapper.base.Mapper;
 import perfomeria.core.domain.model.ArticleChannelModel;
@@ -24,8 +24,6 @@ import perfomeria.core.domain.model.ChannelModel;
 import perfomeria.core.domain.repository.Repository;
 
 public class ArticleRepository implements Repository {
-
-    private static ArticleRepository INSTANCE;
 
     private final PreferencesDataSource preferencesDataSource;
     private final DatabaseDataSource databaseDataSource;
@@ -35,6 +33,7 @@ public class ArticleRepository implements Repository {
     private final ListMapper<ArticleChannel, ArticleChannelModel> articleChannelMapper;
 
 
+    @Inject
     public ArticleRepository(
             final @NonNull PreferencesDataSource preferencesDataSource,
             final @NonNull DatabaseDataSource databaseDataSource,
@@ -47,21 +46,6 @@ public class ArticleRepository implements Repository {
         this.networkDataSource = networkDataSource;
         this.channelMapper = channelMapper;
         this.articleChannelMapper = articleChannelMapper;
-    }
-
-    @NonNull
-    public static ArticleRepository getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ArticleRepository(
-                    PreferencesDataSource.getInstance(),
-                    DatabaseDataSource.getInstance(),
-                    NetworkDataSource.getInstance(),
-                    ChannelMapper.getInstance(),
-                    ListMapper.from(ArticleChannelMapper.getInstance())
-            );
-        }
-
-        return INSTANCE;
     }
 
 
