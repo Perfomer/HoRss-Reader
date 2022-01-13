@@ -5,8 +5,6 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
 
-        versionCode 1
-        versionName "1.0"
 
         buildConfigField "String", "DB_NAME", '"horss-db"'
         buildConfigField "String", "PREF_NAME", '"HorssPreferences"'
