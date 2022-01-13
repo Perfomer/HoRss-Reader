@@ -13,7 +13,10 @@ dependencies {
     api "com.squareup.retrofit2:converter-simplexml:2.3.0"
 
     // Database
-    implementation "android.arch.persistence.room:runtime:2.0.0"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
-    implementation "android.arch.persistence.room:rxjava2:2.0.0"
+    def room = "2.4.1"
+
+    api "androidx.room:room-runtime:$room"
+    annotationProcessor "androidx.room:room-compiler:$room"
+    implementation "androidx.room:room-rxjava2:$room"
+    androidTestImplementation "androidx.room:room-testing:$room"
 }
